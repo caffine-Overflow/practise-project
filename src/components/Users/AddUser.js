@@ -4,12 +4,18 @@ import "./AddUser.css";
 import Button from "../UI/Button";
 
 const AddUser = () => {
-  const [enteredName, setEnteredName] = useState("");
+  const [enteredUsername, setEnteredName] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
 
   const addUserHandler = (event) => {
     event.preventDefault();
-    console.log(enteredName, enteredAge);
+    if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
+      return;
+    }
+    if (enteredAge < 1) {
+      return;
+    }
+    console.log(enteredUsername, enteredAge);
 
     setEnteredName("");
     setEnteredAge("");
@@ -29,7 +35,7 @@ const AddUser = () => {
             <input
               type="text"
               id="username"
-              value={setEnteredName}
+              value={enteredUsername}
               onChange={nameChangeHandlter}
             ></input>
           </div>
@@ -39,7 +45,7 @@ const AddUser = () => {
             <input
               type="number"
               id="age"
-              value={setEnteredAge}
+              value={enteredAge}
               onChange={ageChangeHandler}
             ></input>
           </div>
